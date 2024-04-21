@@ -7,10 +7,19 @@
 #     https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
 #     https://docs.scrapy.org/en/latest/topics/spider-middleware.html
 
+
 BOT_NAME = "almaty_kz"
 
 SPIDER_MODULES = ["almaty_kz.spiders"]
 NEWSPIDER_MODULE = "almaty_kz.spiders"
+FEEDS = {
+    'result.json': {
+    'format': 'json',
+    'encoding': 'utf8',
+    'store_empty': False,
+    'indent': 4,
+    }
+        }
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -62,9 +71,9 @@ ROBOTSTXT_OBEY = True
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    "almaty_kz.pipelines.AlmatyKzPipeline": 300,
-#}
+ITEM_PIPELINES = {
+   "almaty_kz.pipelines.AlmatyKzPipeline": 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

@@ -5,9 +5,19 @@
 
 
 # useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
-
 
 class AlmatyKzPipeline:
+    def is_digit(self, _str):
+        if _str is None:
+            return None
+        if isinstance(_str, int):
+            return _str
+        flag = all(ch.isdigit() for ch in _str)
+        return int(_str) if flag else None
+    
     def process_item(self, item, spider):
+        item['row'] = self.is_digit(item['row'])
+        item['seat'] = self.is_digit(item['seat'])
+        item['price'] = self.is_digit(item['price'])
+        item['count'] = self.is_digit(item['count'])
         return item
